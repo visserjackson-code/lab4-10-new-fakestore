@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<template id="card-template">
+<div class="col-lg-3 col-md-6 col-sm-12">
+<div class="card">
+<div class="card-header">Header</div>
+<img src="..." class="card-img-top" alt="...">
+<div class="card-body">
+<h5 class="card-title">Card title</h5>
+<h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
+<p class="card-text">Product description</p>
+<a href="#" class="btn btn-primary">Read More</a>
+</div>
+</div>
+</div>
+</template>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fake eCommerce Store</title>
+</head>
+
+<body>
+<div class="container p-3">
+<h2>Fake eCommerce Store</h2>
+<div class="filters">
+        <select name="category_filter" id="category_filter" onchange="filterProducts(event)">
+            <option>All Products</option>
+        </select>
+
+        <div id="sort">
+            <label>Sort By:
+                <select name="sort_order" id="sort_order" onchange="sortProducts(event)">
+                    <option value="id">Default ordering</option>
+                    <option value="price_lohi">Price (low to high)</option>
+                    <option value="price_hilo">Price (high to low)</option>
+                    <option value="title_az">Title (A to Z)</option>
+                    <option value="title_za">Title (Z to A)</option>
+                </select>
+            </label>
+        </div>
+
+        <div id="search">
+            <input name="searchText" id="searchText">
+            <button onclick="searchProducts()">Search</button>
+        </div>
+    </div>
+
+    <div id="product-list"></div>
+</div>
