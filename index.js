@@ -13,12 +13,12 @@ const container = document.getElementById('product-list');
 const addProduct = (product) => {
 const template = document.getElementById('card-template');
 //clone it
-
 const tempClone = template.content.cloneNode(true);
-tempClone.id = product.id;
+//set unique id
+tempClone.querySelector('.col-lg-3').id = `product-${product.id}`;
 tempClone.querySelector('.card-header').innerText = product.category;
 tempClone.querySelector('.card-title').innerText = product.title;
-tempClone.querySelector('.card-subtitle').innerText = product.price;
+tempClone.querySelector('.card-subtitle').innerText = '$' + product.price;
 tempClone.querySelector('.card-text').innerText = product.description.slice(0,100);
 tempClone.querySelector('.card-img-top').src = product.image;
 tempClone.querySelector('.card-img-top').alt = product.title;
@@ -46,8 +46,38 @@ const filterProducts = (event) => {
     displayProducts(filtered)
 }
 
+const showFullText = (event) => {
+    event.preventDefault();
+
+    const cardContainer = event.target.closest('.col-lg-3');
+    const productId = parseInt(cardContainer.id.replace('product-', ''));
+
+    const product = allProducts.find(prod => prod.id === productId);
+
+    cardContainer.querySelector('.card-text').innerText = product.description;
+
+    event.target.innerText = "Close"
+    event.target.onclick = (e) => closeFullText(e);
+
+}
+
+const closeFullText = (event) => {
+    event.preventDefault();
+    
+    const cardContainer = event.target.closest('.col-lg-3');
+    const productId = parseInt(cardContainer.id.replace('product-', ''));
+    const product = allProducts.find(p => p.id === productId);
+    
+    cardContainer.querySelector('.card-text').innerText = product.description.slice(0, 100);
+    
+    event.target.innerText = 'Read More';
+    event.target.onclick = (e) => showFullText(e);
+}
+
+
+
 const loadProducts = async () => {
-    allProducts = await getData('https://fakestoreapi.com/products')
+    allProducts = await getData('https://fakestoreapi.com/products');
     displayProducts(allProducts);
     }
 
