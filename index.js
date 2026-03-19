@@ -4,10 +4,14 @@ const getData = async (url) => {
     return data;
 }
 
+let allProducts = []
+const container = document.getElementById('product-list');
+
+
+
 //build single product card
 const addProduct = (product) => {
 const template = document.getElementById('card-template');
-const container = document.getElementById('product-list');
 //clone it
 
 const tempClone = template.content.cloneNode(true);
@@ -21,11 +25,33 @@ tempClone.querySelector('.card-img-top').alt = product.title;
 container.appendChild(tempClone);
 }
 
+const displayProducts = (products) => {
+    container.innerHTML = "";
+
+    products.forEach(prod => {
+        addProduct(prod);
+    })
+}
+
+
+
+const filterProducts = (event) => {
+    const selectedCategory = event.target.value;
+
+    let filtered = allProducts;
+    if (selectedCategory !== "All") {
+        filtered = allProducts.filter(product => product.category === selectedCategory);
+    }
+    
+    displayProducts(filtered)
+}
+
 const loadProducts = async () => {
-    const products = await getData('https://fakestoreapi.com/products')
-    for (const prod of products) {
+    allProducts = await getData('https://fakestoreapi.com/products')
+    for (const prod of allProducts) {
         addProduct(prod);
     }
+
 }
 
  loadProducts();
