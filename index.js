@@ -11,11 +11,11 @@ const container = document.getElementById('product-list');
 //clone it
 
 const tempClone = template.content.cloneNode(true);
-// template.querySelector('.card').id = product.id;
+tempClone.id = product.id;
 tempClone.querySelector('.card-header').innerText = product.category;
 tempClone.querySelector('.card-title').innerText = product.title;
 tempClone.querySelector('.card-subtitle').innerText = product.price;
-tempClone.querySelector('.card-text').innerText = product.description;
+tempClone.querySelector('.card-text').innerText = product.description.slice(0,100);
 tempClone.querySelector('.card-img-top').src = product.image;
 tempClone.querySelector('.card-img-top').alt = product.title;
 container.appendChild(tempClone);

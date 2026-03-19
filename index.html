@@ -10,7 +10,7 @@
 <h5 class="card-title">Card title</h5>
 <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
 <p class="card-text">Product description</p>
-<a href="#" class="btn btn-primary">Read More</a>
+<a href="#" class="btn btn-primary" onclick="showFullText()">Read More</a>
 </div>
 </div>
 </div>
@@ -26,12 +26,17 @@
 <body>
 <div class="container p-3">
 <h2>Fake eCommerce Store</h2>
-<div class="filters">
+<div class="filters mb-2">
         <select name="category_filter" id="category_filter" onchange="filterProducts(event)">
-            <option>All Products</option>
-        </select>
+            <option value="id">All Products</option>
+            <option value="mens-clothing">Men's Clothing</option>
+            <option value=""womens-clothing">Women's Clothing</option>
+            <option value="jewelry">Jewelry</option>
+            <option value="electronics">Electronics</option>
 
-        <div id="sort">
+        </select>
+</div>
+        <!-- <div id="sort">
             <label>Sort By:
                 <select name="sort_order" id="sort_order" onchange="sortProducts(event)">
                     <option value="id">Default ordering</option>
@@ -47,9 +52,9 @@
             <input name="searchText" id="searchText">
             <button onclick="searchProducts()">Search</button>
         </div>
-    </div>
+    </div> -->
 
-    <div id="product-list"></div>
+    <div id="product-list" class="row"></div>
 </div>
 <script src="index.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
