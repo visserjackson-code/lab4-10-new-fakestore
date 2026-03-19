@@ -39,7 +39,7 @@ const filterProducts = (event) => {
     const selectedCategory = event.target.value;
 
     let filtered = allProducts;
-    if (selectedCategory !== "All") {
+    if (selectedCategory !== "all") {
         filtered = allProducts.filter(product => product.category === selectedCategory);
     }
     
@@ -48,11 +48,8 @@ const filterProducts = (event) => {
 
 const loadProducts = async () => {
     allProducts = await getData('https://fakestoreapi.com/products')
-    for (const prod of allProducts) {
-        addProduct(prod);
+    displayProducts(allProducts);
     }
-
-}
 
  loadProducts();
 
